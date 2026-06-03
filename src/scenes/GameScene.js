@@ -61,7 +61,7 @@ export default class GameScene extends Phaser.Scene {
         }
     );
     this.load.audio("gameplay_music", "assets/audios/gameplay_music.mp3");
-    this.load.audio("collect_coin", "src/assets/audios/collecting_coin.mp3");
+    this.load.audio("collect_coin", "assets/collect_coin2.mp3");
     this.load.audio("sword_swing", "assets/audios/sword_swing.mp3");
 
     // ==========================================
