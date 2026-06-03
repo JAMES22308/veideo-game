@@ -60,9 +60,9 @@ export default class GameScene extends Phaser.Scene {
             frameHeight: 128
         }
     );
-    this.load.audio("gameplay_music", "src/assets/audios/gameplay_music.mp3");
+    this.load.audio("gameplay_music", "assets/audios/gameplay_music.mp3");
     this.load.audio("collect_coin", "src/assets/audios/collecting_coin.mp3");
-    this.load.audio("sword_swing", "src/assets/audios/sword_swing.mp3");
+    this.load.audio("sword_swing", "assets/audios/sword_swing.mp3");
 
     // ==========================================
     // 🦘 PLAYER JUMPING SPRITESHEET
