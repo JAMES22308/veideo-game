@@ -58,9 +58,9 @@ export default class Level2Scene extends Phaser.Scene {
         }
     );
 
-
-    this.load.audio("gameplay_music", "src/assets/audios/gameplay_music.mp3");
-    this.load.audio("collect_coin", "src/assets/audios/collecting_coin.mp3");
+    this.load.audio("gameplay_music", "assets/gameplay_music.mp3");
+    this.load.audio("collect_coin", "assets/collect_coin2.mp3");
+    this.load.audio("sword_swing", "assets/sword_swing.mp3");
 
     // ==========================================
     // 🦘 PLAYER JUMPING SPRITESHEET
@@ -510,12 +510,12 @@ this.coinsCollected = this.coinsCollected ?? 0;
 
 this.showLevelBanner();
 
-
 if (settings.musicOn) {
-    MusicManager.play(this, "menu_music", settings.volume);
+    MusicManager.play(this, "gameplay_music", settings.volume);
 } else {
     MusicManager.stop();
 }
+
 
 }
 
