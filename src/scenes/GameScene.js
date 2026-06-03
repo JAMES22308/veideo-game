@@ -518,11 +518,11 @@ this.enemy2.setVelocityX(80);
 this.enemy2.anims.play("enemyRunAnim", true);
 
 
-if (settings.musicOn) {
-    MusicManager.play(this, "menu_music", settings.volume);
-} else {
-    MusicManager.stop();
-}
+// if (settings.musicOn) {
+//     MusicManager.play(this, "menu_music", settings.volume);
+// } else {
+//     MusicManager.stop();
+// }
 
 
 }
