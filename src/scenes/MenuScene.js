@@ -36,8 +36,23 @@ export default class MenuScene extends Phaser.Scene {
         //     volume: 0.5,
         //     musicOn: true
         // };
+
+
+
+
+        const settings = JSON.parse(localStorage.getItem("gameSettings")) || {
+            volume: 0.5,
+            musicOn: true,
+            difficulty: 0.5,
+            visibilityOn: false
+        };
+
         // 🌌 BACKGROUND
-        this.cameras.main.setBackgroundColor("#87CEEB");
+        if (settings.visibilityOn) {
+            this.cameras.main.setBackgroundColor("#69c4fd"); // brighter
+        } else {
+            this.cameras.main.setBackgroundColor("#87CEEB"); // normal
+        }
 
         // 🏷 TITLE
         this.add.text(width / 2, 200, "2D AI JUMP", {
@@ -47,12 +62,15 @@ export default class MenuScene extends Phaser.Scene {
             fontFamily: "Arial"
         }).setOrigin(0.5);
 
+
+const groundColor = settings.visibilityOn ? 0x40b016 : 0x22c55e;
+        
       this.add.rectangle(
             width / 2,        // center X
             height - 40,      // bottom position
             width,            // full screen width
             80,               // height of grass
-            0x22c55e          // green color
+            groundColor         // green color
         );
 
         // 🎮 BUTTONS (CENTERED)

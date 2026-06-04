@@ -113,19 +113,32 @@ export default class Level2Scene extends Phaser.Scene {
         const { width, height } = this.scale;
 
         // 🌌 SKY
-        this.cameras.main.setBackgroundColor("#87CEEB");
 
-        // 🟩 GROUND
-        this.ground = this.add.rectangle(width / 2, height - 40, width, 80, 0x22c55e);
-        this.physics.add.existing(this.ground, true);
 
-        this.enemySwingPlayed = false;
+
 
         const settings = JSON.parse(localStorage.getItem("gameSettings")) || {
             volume: 0.5,
             musicOn: true,
-            difficulty: 0.5
+            difficulty: 0.5,
+            visibilityOn: false
         };
+        // 🟩 GROUND
+        const platformColor = settings.visibilityOn
+        ? 0x40b016
+        : 0x22c55e;
+
+        if (settings.visibilityOn) {
+            this.cameras.main.setBackgroundColor("#69c4fd");
+        } else {
+            this.cameras.main.setBackgroundColor("#87CEEB");
+        }
+        this.ground = this.add.rectangle(width / 2, height - 40, width, 80, platformColor);
+        this.physics.add.existing(this.ground, true);
+
+        this.enemySwingPlayed = false;
+
+
         this.difficulty = settings.difficulty ?? 0.5;
         this.coinSound = this.sound.add("collect_coin");
 
@@ -178,19 +191,19 @@ export default class Level2Scene extends Phaser.Scene {
     // 🪜 PLATFORMS
     // =========================
 
-    this.platform1 = this.add.rectangle(380, height - 180, 350, 40, 0x22c55e);
+    this.platform1 = this.add.rectangle(380, height - 180, 350, 40, platformColor);
     this.physics.add.existing(this.platform1, true);
 
-    this.platform2 = this.add.rectangle(620, height - 320, 250, 40, 0x22c55e);
+    this.platform2 = this.add.rectangle(620, height - 320, 250, 40, platformColor);
     this.physics.add.existing(this.platform2, true);
 
-    this.platform3 = this.add.rectangle(960, height - 420, 700, 40, 0x22c55e);
+    this.platform3 = this.add.rectangle(960, height - 420, 700, 40, platformColor);
     this.physics.add.existing(this.platform3, true);
 
-    this.platform4 = this.add.rectangle(1050, height - 550, 300, 40, 0x22c55e);
+    this.platform4 = this.add.rectangle(1050, height - 550, 300, 40, platformColor);
     this.physics.add.existing(this.platform4, true);
 
-    this.platform5 = this.add.rectangle(1500, height - 580, 350, 40, 0x22c55e);
+    this.platform5 = this.add.rectangle(1500, height - 580, 350, 40, platformColor);
     this.physics.add.existing(this.platform5, true);
 
     this.physics.add.collider(this.player, this.platform1);
