@@ -180,7 +180,7 @@ if (hasProgress) {
         SaveManager.save({
             level: 1,
             lives: 3,
-            coinsCollected: 0,
+            coinsCollected: this.saveData.coinsCollected,
             levelStartScore: 0,
             scene: "GameScene",
             gameOver: false
@@ -189,7 +189,7 @@ if (hasProgress) {
         this.scene.start("GameScene", {
             level: 1,
             score: 0,
-            coinsCollected: 0
+            coinsCollected: this.saveData.coinsCollected
         });
     });
 

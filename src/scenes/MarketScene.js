@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import SaveManager from "./SaveManager";
 
 export default class MarketScene extends Phaser.Scene {
     constructor() {
@@ -36,6 +37,14 @@ export default class MarketScene extends Phaser.Scene {
 
         panel.setStrokeStyle(6, 0xffffff);
 
+
+
+
+
+
+        const save = SaveManager.load();
+        this.coins = save?.coinsCollected ?? 0;
+
         // ======================
         // CHARACTER CARDS DATA
         // ======================
@@ -51,6 +60,19 @@ export default class MarketScene extends Phaser.Scene {
         // ======================
         let startX = width / 2 - 450;
         let y = height / 2;
+
+
+
+
+
+
+        this.coinText = this.add.text(width - 20, 20, "", {
+            fontSize: "20px",
+            color: "#ffffff",
+            fontStyle: "bold"
+        }).setOrigin(1, 0);
+
+        this.coinText.setText(`💰 Coins: ${this.coins}`);
 
         // ======================
         // CREATE 4 CARDS
