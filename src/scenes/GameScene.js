@@ -193,10 +193,6 @@ export default class GameScene extends Phaser.Scene {
         this.player.invincibleTime = 800; // ms
 
      
-
-
-
-
         this.anims.create({
             key: "enemyAttackAnim",
             frames: this.anims.generateFrameNumbers("enemyAttack", {
