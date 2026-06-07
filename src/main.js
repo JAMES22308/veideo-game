@@ -13,7 +13,7 @@ const config = {
     // width: window.innerWidth,
     // height: window.innerHeight,
     width: isMobile ? 800 : 2000,
-    height: isMobile ? 1200 : 940,
+    height: isMobile ? 1180 : 940,
 
     render: {
     antialias: false,
