@@ -14,6 +14,7 @@ const config = {
     // height: window.innerHeight,
     width: isMobile ? 800 : 2000,
     height: isMobile ? 1280 : 940,
+
     render: {
     antialias: false,
     pixelArt: false
