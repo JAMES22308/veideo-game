@@ -6,8 +6,17 @@ export default class HowToPlayScene extends Phaser.Scene {
         super("HowToPlayScene");
     }
 
+
+    preload() {
+        this.load.video("tutorial", "assets/tutorial-video.mp4");
+    }
+
     create() {
         const { width, height } = this.scale;
+
+        this.video = this.add.video(width / 2, height / 2 - 40, "tutorial");
+
+
         this.drones = [];
 
         this.cameras.main.setBackgroundColor("#E0F2FE");
@@ -122,19 +131,85 @@ export default class HowToPlayScene extends Phaser.Scene {
         // ======================
         // 🎮 BUTTONS
         // ======================
+        const centerX = width / 2;
+        const y = height - 150;
+        const spacing = 140;
 
-        
+        // 🎥 WATCH BUTTON
+        this.watchBtn = this.createButton(
+            centerX - spacing,
+            y,
+            "WATCH TUTORIAL",
+            "#22c55e",
+            () => this.showVideo()
+        );
 
-
-        this.createButton(width / 2 - 10, height - 100, "BACK TO MENU", "#FCA5A5", () => {
-            this.scene.start("MenuScene");
-        });
+        // 🔙 BACK BUTTON
+        this.backBtn = this.createButton(
+            centerX + spacing,
+            y,
+            "BACK TO MENU",
+            "#fca5a5",
+            () => this.scene.start("MenuScene")
+        );
 
 
         this.createDrone(200, 150, 1);
         this.createDrone(600, 200, 1.2);
         this.createDrone(1000, 120, 0.8);
     }
+
+showVideo() {
+    const { width, height } = this.scale;
+
+    // 🔳 dark overlay
+    this.videoBg = this.add.rectangle(
+        width / 2,
+        height / 2,
+        width,
+        height,
+        0x000000,
+        0.85
+    ).setDepth(1000);
+
+    // 🎥 smaller video (IMPORTANT CHANGE)
+    this.video = this.add.video(width / 2, height / 2 - 30, "tutorial");
+
+    this.video.setDisplaySize(200, 120); // 🔥 mas maliit na size
+    this.video.setDepth(1001);
+    this.video.play(false);
+
+    // 🔙 BACK BUTTON
+    this.backBtn = this.add.text(width / 2, height / 2 + 200, "BACK", {
+        fontSize: "22px",
+        fontStyle: "bold",
+        color: "#000",
+        backgroundColor: "#fca5a5",
+        padding: { x: 20, y: 10 }
+    })
+    .setOrigin(0.5)
+    .setInteractive()
+    .setDepth(1002);
+
+    // hover effect
+    this.backBtn.on("pointerover", () => {
+        this.backBtn.setStyle({ backgroundColor: "#f87171" });
+    });
+
+    this.backBtn.on("pointerout", () => {
+        this.backBtn.setStyle({ backgroundColor: "#fca5a5" });
+    });
+
+    // click close
+    this.backBtn.on("pointerdown", () => {
+        this.video.destroy();
+        this.videoBg.destroy();
+        this.backBtn.destroy();
+    });
+}
+
+
+
 
     update() {
         const { width } = this.scale;
