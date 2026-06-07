@@ -7,8 +7,8 @@ import Level2Scene from "./scenes/Level2Scene.js";
 import MarketScene from "./scenes/MarketScene.js";
 const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 2000,
+    height: 720,
     render: {
     antialias: false,
     pixelArt: false
