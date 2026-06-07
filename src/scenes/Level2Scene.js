@@ -61,6 +61,8 @@ export default class Level2Scene extends Phaser.Scene {
     this.load.audio("gameplay_music", "assets/gameplay_music.mp3");
     this.load.audio("collect_coin", "assets/collect_coin2.mp3");
     this.load.audio("sword_swing", "assets/sword_swing.mp3");
+    this.load.audio("congrats", "assets/congratulations.mp3");
+    this.load.audio("gameover", "assets/gameover.mp3");
 
     // ==========================================
     // 🦘 PLAYER JUMPING SPRITESHEET
@@ -838,6 +840,15 @@ answerAI(isCorrect) {
         // =========================
         // 🎉 CORRECT ANSWER
         // =========================
+        
+const settings = JSON.parse(localStorage.getItem("gameSettings")) || {};
+
+
+    if (settings.sfxOn) {
+        this.sound.play("congrats", {
+            volume: settings.volume ?? 0.5
+        });
+    }
 
         this.add.rectangle(width / 2, height / 2, 600, 200, 0x27ae60, 0.9);
 
@@ -876,6 +887,15 @@ this.scene.start("Level2Scene", {
         // =========================
         // 💀 GAME OVER (INSTANT)
         // =========================
+        
+const settings = JSON.parse(localStorage.getItem("gameSettings")) || {};
+
+
+if (settings.sfxOn) {
+    this.sound.play("gameover", {
+        volume: settings.volume ?? 0.5
+    });
+}
 
         this.physics.pause();
 
