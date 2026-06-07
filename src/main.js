@@ -10,10 +10,10 @@ import MarketScene from "./scenes/MarketScene.js";
 const isMobile = window.innerWidth < 768;
 const config = {
     type: Phaser.AUTO,
-    // width: window.innerWidth,
-    // height: window.innerHeight,
-    width: isMobile ? 800 : 2000,
-    height: isMobile ? 1180 : 940,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    // width: isMobile ? 800 : 1912,
+    // height: isMobile ? 1180 : 1914,
 
     render: {
     antialias: false,
@@ -36,5 +36,8 @@ const config = {
     scene: [MenuScene, HowToPlayScene,MarketScene, OptionScene, GameScene, Level2Scene]
     // scene: [Level2Scene]
 };
+
+console.log("Browser Width:", window.innerWidth);
+console.log("Browser Height:", window.innerHeight);
 
 new Phaser.Game(config);
